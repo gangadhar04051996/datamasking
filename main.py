@@ -8,6 +8,7 @@ Created on Thu Jun 25 15:50:55 2020
 import subprocess
 import os
 import pandas as pd
+import cryptography
 
 class Annonymise:
     def __init__(self,path=""):
@@ -29,6 +30,7 @@ class Annonymise:
             return
         
         df = pd.read_excel(path,sheet_name=sheet_name)
+        return df
     
     def encryptcsvfile(self,name=""):
         
@@ -37,10 +39,32 @@ class Annonymise:
             return
         
         df = pd.read_csv(path)
+        return
         
-    def __checkdataspread__(df):
+    def __checkdataspread__(self,df):
         #check the dataframe data spread in this function
         columns = df.columns
+        for i in columns:
+            
+            keys = df[i].value_counts().keys().tolist()
+            vals = df[i].value_counts().tolist()
+            hofdf = len(df[i])/10  #10% of len
+            if len(vals) < hofdf:
+                colmune =encryptcolumn(df[i])
+                df[i]= columne
+        return df
+                
+    def __encryptcolumn__(self,df):
+        #encrypt the column and return 
+        
+        return df
+    
+    def __decryptcolumn__(self,df):
+        
+        #need to check if using a public private key architecture
+        return df
+            
+            
         
         
     
